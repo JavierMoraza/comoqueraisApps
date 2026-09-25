@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">comoqueraisApps</string>
+    <string name="mensaje_recibido">Mensaje Recibido</string>
+    <string name="escribe_tu_nombre">Escribe tu Nombre</string>
+</resources>
