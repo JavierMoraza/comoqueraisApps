@@ -1,0 +1,47 @@
+package com.javier.comoqueraisapps
+
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Button
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import com.javier.comoqueraisapps.HelloApp.MainActivity
+import com.javier.comoqueraisapps.IMCApp.IMCActivity
+import com.javier.comoqueraisapps.MessageApp.MessageActivity
+
+class MenuActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_menu)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+
+        val btnHelloApp = findViewById<Button>(R.id.btnHelloApp)
+        val btnMessageActivity = findViewById<Button>(R.id.btnMessageApp)
+        val btnImcApp = findViewById<Button>(R.id.btnImcApp)
+        btnHelloApp.setOnClickListener { navigateToHelloApp() }
+        btnMessageActivity.setOnClickListener { navigateToMessageActivity() }
+        btnImcApp.setOnClickListener { navigateToImcApp() }
+    }
+
+    private fun navigateToHelloApp() {
+        var intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun navigateToMessageActivity() {
+        var intent = Intent(this, MessageActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun navigateToImcApp() {
+        var intent = Intent(this, IMCActivity::class.java)
+        startActivity(intent)
+    }
+}
