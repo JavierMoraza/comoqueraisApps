@@ -2,4 +2,10 @@
     <string name="app_name">comoqueraisApps</string>
     <string name="mensaje_recibido">Mensaje Recibido</string>
     <string name="escribe_tu_nombre">Escribe tu Nombre</string>
+    <string name="hombre">Hombre</string>
+    <string name="Female">Mujer</string>
+    <string name="height">Altrua</string>
+    <string name="weight">peso</string>
+    <string name="Year">edad</string>
+    <string name="Calculate">Calcular</string>
 </resources>
