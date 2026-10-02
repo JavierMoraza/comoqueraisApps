@@ -8,4 +8,6 @@
     <string name="weight">peso</string>
     <string name="Year">edad</string>
     <string name="Calculate">Calcular</string>
+    <string name="result">Resultado\n</string>
+    <string name="recalculate">ReCalcular</string>
 </resources>
