@@ -39,7 +39,29 @@ class ResultActivity : AppCompatActivity() {
 
         when(imc) {
             in 0.00 .. 18.50 -> { //Bajo peso
-
+                tvResult.text = getString(R.string.title_bajo_peso)
+                tvResult.setTextColor(getColor(R.color.peso_bajo))
+                tvDescription.text = getString(R.string.description_bajo_peso)
+            }
+            in 18.51 .. 24.99 -> { //Peso Normal
+                tvResult.text = getString(R.string.title_peso_normal)
+                tvResult.setTextColor(getColor(R.color.peso_normal))
+                tvDescription.text = getString(R.string.description_peso_normal)
+            }
+            in 25.0 .. 29.99 -> { //Sobrepeso
+                tvResult.text = getString(R.string.title_sobrepeso)
+                tvResult.setTextColor(getColor(R.color.sobrepeso))
+                tvDescription.text = getString(R.string.description_sobrepeso)
+            }
+            in 30.0 .. 90.00 -> { //OBESIDAD
+                tvResult.text = getString(R.string.error)
+                tvResult.setTextColor(getColor(R.color.obesidad))
+                tvDescription.text = getString(R.string.error)
+            }
+            else -> {
+                tvResult.text = getString(R.string.title_obesidad)
+                tvResult.setTextColor(getColor(R.color.obesidad))
+                tvDescription.text = getString(R.string.description_obesidad)
             }
         }
     }
@@ -48,7 +70,7 @@ class ResultActivity : AppCompatActivity() {
         tvResult = findViewById(R.id.tvResult)
         tvIMC = findViewById(R.id.tvIMC)
         tvDescription = findViewById(R.id.tvDescription)
-        btnRecalculate =findViewById(R.id.btnCalculate)
+        btnRecalculate =findViewById(R.id.btnReCalculate)
     }
 
     private fun initListeners() {
