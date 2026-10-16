@@ -23,4 +23,11 @@
     <string name="boardGames">Juegos de mesa</string>
     <string name="categories">Categorias</string>
     <string name="games">Juegos</string>
+    <string name="dialog_add_game">AÑADIR JUEGO</string>
+    <string name="bgapp_cooperative_category">Cooperativos</string>
+    <string name="bgapp_deckbuilding_category">DeckBuilding</string>
+    <string name="bgapp_eurogames_category">EuroGames</string>
+    <string name="bgapp_lcg_category">Living Card Games</string>
+    <string name="bgapp_legacy_category">Legacy</string>
+    <string name="dialog_newgame_button">Nuevo Juego</string>
 </resources>

@@ -47,7 +47,11 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".BoardGamesApp.BoardGamesActivity"
+            android:exported="false"
             android:theme="@style/Theme.BoardGamesApp"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".BoardGamesApp.GamesViewHolder"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
     </application>
