@@ -45,15 +45,20 @@ class BoardGamesActivity : AppCompatActivity() {
         initUI()
         initListeners()
     }
-
+    private fun onGameSelected(position: Int) {
+        games[position].isSelected = !games[position].isSelected
+        updateGames()
+    }
     private fun initUI() {
         categoriesAdapter = CategoriesAdapter(categories)
-        rvCategories.layoutManager = LinearLayoutManager(
-            this,
+        rvCategories.layoutManager = LinearLayoutManager(this,
             LinearLayoutManager.HORIZONTAL,
             false)
         rvCategories.adapter = categoriesAdapter
-        gamesAdapter = GamesAdapter(games)
+
+        gamesAdapter = GamesAdapter(games) {position -> onGameSelected(position)}
+        rvGames.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
+        rvGames.adapter = gamesAdapter
     }
 
     private fun initComponents() {
@@ -81,8 +86,8 @@ class BoardGamesActivity : AppCompatActivity() {
                 val currentCategory: GameCategory = when(selectedRadioButton.text){
                     getString(R.string.bgapp_cooperative_category) -> GameCategory.Cooperative
                     getString(R.string.bgapp_deckbuilding_category) -> GameCategory.Deckbuilding
-                    getString(R.string.bgapp_eurogames_category) -> GameCategory.Cooperative
-                    getString(R.string.bgapp_lcg_category) -> GameCategory.Cooperative
+                    getString(R.string.bgapp_eurogames_category) -> GameCategory.Euro
+                    getString(R.string.bgapp_lcg_category) -> GameCategory.LCG
                     else -> GameCategory.Legacy
                 }
                 games.add(Game(currentGame, currentCategory))
@@ -94,6 +99,6 @@ class BoardGamesActivity : AppCompatActivity() {
     }
 
     private fun updateGames(){
-        gamesAdapter.n
+        gamesAdapter.notifyDataSetChanged()
     }
 }
