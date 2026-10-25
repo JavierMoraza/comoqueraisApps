@@ -50,6 +50,10 @@
             android:exported="false"
             android:theme="@style/Theme.BoardGamesApp"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".PaletaColoresApp.PaletaColoresApp"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

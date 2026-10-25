@@ -35,4 +35,6 @@
     <string name="dialog_lcg_category">Living Card Games</string>
     <string name="dialog_legacy_category">Legacy</string>
     <string name="dialog_newgame_button">Nuevo juego</string>
+    <string name="paleta_colores_app">Paleta Colores App</string>
+    <string name="paleta_de_colores">PALETA DE COLORES</string>
 </resources>

@@ -11,6 +11,7 @@ import com.javier.comoqueraisapps.BoardGamesApp.BoardGamesActivity
 import com.javier.comoqueraisapps.HelloApp.MainActivity
 import com.javier.comoqueraisapps.IMCApp.IMCActivity
 import com.javier.comoqueraisapps.MessageApp.MessageActivity
+import com.javier.comoqueraisapps.PaletaColoresApp.PaletaColoresApp
 
 class MenuActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,10 +28,12 @@ class MenuActivity : AppCompatActivity() {
         val btnMessageActivity = findViewById<Button>(R.id.btnMessageApp)
         val btnImcApp = findViewById<Button>(R.id.btnImcApp)
         val btnBoardGamesApp = findViewById<Button>(R.id.btnBoardGameApp)
+        val btnPaletaColoresApp = findViewById<Button>(R.id.btnPaletaColoresApp)
         btnHelloApp.setOnClickListener { navigateToHelloApp() }
         btnMessageActivity.setOnClickListener { navigateToMessageActivity() }
         btnImcApp.setOnClickListener { navigateToImcApp() }
         btnBoardGamesApp.setOnClickListener { navigateToBoardGameApp() }
+        btnPaletaColoresApp.setOnClickListener { navigateToPaletaColoresApp() }
     }
 
     private fun navigateToHelloApp() {
@@ -49,6 +52,10 @@ class MenuActivity : AppCompatActivity() {
     }
     private fun navigateToBoardGameApp(){
         var intent = Intent(this, BoardGamesActivity::class.java)
+        startActivity(intent)
+    }
+    private fun navigateToPaletaColoresApp(){
+        var intent = Intent(this, PaletaColoresApp::class.java)
         startActivity(intent)
     }
 }
