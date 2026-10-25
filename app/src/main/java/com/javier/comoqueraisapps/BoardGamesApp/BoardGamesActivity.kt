@@ -2,6 +2,7 @@ package com.javier.comoqueraisapps.BoardGamesApp
 
 import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioButton
@@ -16,7 +17,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.javier.comoqueraisapps.R
 
 class BoardGamesActivity : AppCompatActivity() {
-
     private val categories = listOf(GameCategory.Cooperative, GameCategory.LCG, GameCategory.Euro,
         GameCategory.Legacy, GameCategory.Deckbuilding)
     private val games = mutableListOf(
@@ -49,8 +49,13 @@ class BoardGamesActivity : AppCompatActivity() {
         games[position].isSelected = !games[position].isSelected
         updateGames()
     }
+    private fun onCategorySelected(position: Int) {
+        categories[position].isSelected = !categories[position].isSelected
+        categoriesAdapter.notifyItemChanged(position)
+        updateGames()
+    }
     private fun initUI() {
-        categoriesAdapter = CategoriesAdapter(categories)
+        categoriesAdapter = CategoriesAdapter(categories) {position -> onCategorySelected(position)}
         rvCategories.layoutManager = LinearLayoutManager(this,
             LinearLayoutManager.HORIZONTAL,
             false)
@@ -80,14 +85,14 @@ class BoardGamesActivity : AppCompatActivity() {
 
         btnAddGame.setOnClickListener {
             val currentGame = etGame.text.toString()
-            if (currentGame.isNotEmpty()){
+            if(currentGame.isNotEmpty()) {
                 val selectedId = rgCategories.checkedRadioButtonId
                 val selectedRadioButton: RadioButton = rgCategories.findViewById(selectedId)
                 val currentCategory: GameCategory = when(selectedRadioButton.text){
-                    getString(R.string.bgapp_cooperative_category) -> GameCategory.Cooperative
-                    getString(R.string.bgapp_deckbuilding_category) -> GameCategory.Deckbuilding
-                    getString(R.string.bgapp_eurogames_category) -> GameCategory.Euro
-                    getString(R.string.bgapp_lcg_category) -> GameCategory.LCG
+                    getString(R.string.dialog_cooperative_category) -> GameCategory.Cooperative
+                    getString(R.string.dialog_deckbuilding_category) -> GameCategory.Deckbuilding
+                    getString(R.string.dialog_euro_category) -> GameCategory.Euro
+                    getString(R.string.dialog_lcg_category) -> GameCategory.LCG
                     else -> GameCategory.Legacy
                 }
                 games.add(Game(currentGame, currentCategory))
@@ -99,6 +104,16 @@ class BoardGamesActivity : AppCompatActivity() {
     }
 
     private fun updateGames(){
+        val selectedCategories: List<GameCategory> = categories.filter { it.isSelected }
+        val newGames: List<Game> = games.filter { selectedCategories.contains(it.categoria) }
+        games.forEach {
+            Log.i("games",it.isSelected.toString())
+        }
+        newGames.forEach {
+            Log.i("newGames",it.isSelected.toString())
+        }
+
+        gamesAdapter.games = newGames
         gamesAdapter.notifyDataSetChanged()
     }
 }
