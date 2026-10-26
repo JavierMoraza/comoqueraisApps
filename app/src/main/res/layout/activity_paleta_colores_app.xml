@@ -9,18 +9,98 @@
     tools:context=".PaletaColoresApp.PaletaColoresApp">
 
     <TextView
+        android:id="@+id/txTitulo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:background="@color/background_fab"
         android:text="@string/paleta_de_colores"
-        android:textAlignment="center"
+        android:gravity="center"
         android:textColor="@color/white"
         android:textSize="30sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/viewH1"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginHorizontal="25dp"
+        app:cardBackgroundColor="#33E53935"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txTitulo"
+        app:layout_constraintEnd_toEndOf="parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="H1 (20%)"/>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/viewH2"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginHorizontal="25dp"
+        app:cardBackgroundColor="#80D81B60"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewH1"
+        app:layout_constraintEnd_toEndOf="parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="H2 (50%)"/>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/viewH3"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginHorizontal="25dp"
+        app:cardBackgroundColor="#CC3949AB"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewH2"
+        app:layout_constraintEnd_toEndOf="parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="H3 (80%)"/>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txTitulo"
+        app:layout_constraintBottom_toTopOf="@id/viewBoton">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/viewBoton"
+        android:layout_width="380dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="30dp"
+        app:cardBackgroundColor="@color/background_fab"
+        android:foregroundGravity="center"
+        app:cardCornerRadius="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textStyle="bold"
+            android:text="@string/cambiar_color"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:textAlignment="center"
+            android:layout_margin="10dp"/>
+    </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
