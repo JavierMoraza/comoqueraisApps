@@ -29,6 +29,10 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+    buildFeatures{
+        viewBinding = true
+
+    }
 }
 
 dependencies {
@@ -37,6 +41,11 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.core.ktx)
     implementation(libs.material)
+
+    //Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)

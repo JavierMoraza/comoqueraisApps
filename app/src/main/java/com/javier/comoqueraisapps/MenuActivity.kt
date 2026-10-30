@@ -12,6 +12,7 @@ import com.javier.comoqueraisapps.HelloApp.MainActivity
 import com.javier.comoqueraisapps.IMCApp.IMCActivity
 import com.javier.comoqueraisapps.MessageApp.MessageActivity
 import com.javier.comoqueraisapps.PaletaColoresApp.PaletaColoresApp
+import com.javier.comoqueraisapps.SuperheroApp.SuperheroListActivity
 
 class MenuActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,11 +30,18 @@ class MenuActivity : AppCompatActivity() {
         val btnImcApp = findViewById<Button>(R.id.btnImcApp)
         val btnBoardGamesApp = findViewById<Button>(R.id.btnBoardGameApp)
         val btnPaletaColoresApp = findViewById<Button>(R.id.btnPaletaColoresApp)
+        val btnSuperheroApp = findViewById<Button>(R.id.btnSuperheroesApp)
         btnHelloApp.setOnClickListener { navigateToHelloApp() }
         btnMessageActivity.setOnClickListener { navigateToMessageActivity() }
         btnImcApp.setOnClickListener { navigateToImcApp() }
         btnBoardGamesApp.setOnClickListener { navigateToBoardGameApp() }
         btnPaletaColoresApp.setOnClickListener { navigateToPaletaColoresApp() }
+        btnSuperheroApp.setOnClickListener { navigateToSuperheroApp() }
+    }
+
+    private fun navigateToSuperheroApp() {
+        var intent = Intent(this, SuperheroListActivity::class.java)
+        startActivity(intent)
     }
 
     private fun navigateToHelloApp() {

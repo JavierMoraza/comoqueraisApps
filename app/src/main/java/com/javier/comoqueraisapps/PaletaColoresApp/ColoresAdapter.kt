@@ -14,7 +14,7 @@ class ColoresAdapter (private val colores: List<Color>):RecyclerView.Adapter<Col
     }
 
     override fun onBindViewHolder(holder: ColoresViewHolder, position: Int) {
-        holder.render(colores[position])
+        holder.pintarViews(colores[position])
     }
 
     override fun getItemCount() = colores.size

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     app:layout_constraintStart_toStartOf="parent">
     <TextView
-        android:id="@+id/viewText"
+        android:id="@+id/tvColor"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="V1 (20%)"/>
