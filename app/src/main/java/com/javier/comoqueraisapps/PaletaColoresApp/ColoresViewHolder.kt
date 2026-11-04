@@ -13,8 +13,8 @@ class ColoresViewHolder (view: View): RecyclerView.ViewHolder(view){
     private val tvColor: TextView = view.findViewById(R.id.tvColor)
 
     fun pintarViews(color: Color){
-        //tvColor.text = color.text
-        //tvColor.setTextColor(color.colorTexto)
+        tvColor.text = color.name
+        tvColor.setBackgroundColor(color.color)
     }
 
 }

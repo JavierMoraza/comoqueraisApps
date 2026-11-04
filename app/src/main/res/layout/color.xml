@@ -4,6 +4,7 @@
     android:id="@+id/viewColor"
     android:layout_width="100dp"
     android:layout_height="match_parent"
+    android:layout_marginRight="20dp"
     app:layout_constraintStart_toStartOf="parent">
     <TextView
         android:id="@+id/tvColor"
