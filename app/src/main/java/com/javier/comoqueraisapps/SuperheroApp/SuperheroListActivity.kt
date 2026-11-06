@@ -1,25 +1,33 @@
 package com.javier.comoqueraisapps.SuperheroApp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.ViewCompat.setOnApplyWindowInsetsListener
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.isVisible
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.javier.comoqueraisapps.R
 import com.javier.comoqueraisapps.databinding.ActivitySuperheroListBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class SuperheroListActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySuperheroListBinding
     private lateinit var retrofit: Retrofit
+    private lateinit var adapter: SuperheroAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding = ActivitySuperheroListBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_superhero_list)
+        setContentView(binding.root)
         setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -38,9 +46,31 @@ class SuperheroListActivity : AppCompatActivity() {
 
             override fun onQueryTextChange(newText: String?): Boolean = false
         })
+        adapter = SuperheroAdapter()
+        binding.rvSuperhero.setHasFixedSize(true)
+        binding.rvSuperhero.layoutManager = LinearLayoutManager(this)
+        binding.rvSuperhero.adapter = adapter
     }
 
-    private fun searchByName(query: String){}
+    private fun searchByName(query: String){
+        binding.progressBar.isVisible = true
+        CoroutineScope(Dispatchers.IO).launch {
+            val myResponse: Response<SuperheroDataResponse> =
+                retrofit.create(ApiService::class.java).getSuperheroes(query)
+            if (myResponse.isSuccessful){
+                Log.i("Consulta", "Funciona :)")
+                val response: SuperheroDataResponse? = myResponse.body()
+                if (response != null){
+                    Log.i("Cuerpo de la consulta", response.toString())
+                    runOnUiThread {
+                        binding.progressBar.isVisible = false
+                    }
+                }
+            }else{
+                Log.i("Consulta","No funciona")
+            }
+        }
+    }
 
     private fun getRetrofit(): Retrofit {
         return Retrofit
