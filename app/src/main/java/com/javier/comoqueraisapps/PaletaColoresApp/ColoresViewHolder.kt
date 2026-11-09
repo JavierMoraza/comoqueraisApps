@@ -14,7 +14,7 @@ class ColoresViewHolder (view: View): RecyclerView.ViewHolder(view){
 
     fun pintarViews(color: Color){
         tvColor.text = color.name
-        tvColor.setBackgroundColor(color.color)
+        tvColor.setBackgroundColor(ContextCompat.getColor(tvColor.context, color.color))
     }
 
 }
