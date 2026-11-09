@@ -1,5 +1,6 @@
 package com.javier.comoqueraisapps.SuperheroApp
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
@@ -19,6 +20,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class SuperheroListActivity : AppCompatActivity() {
+    companion object{
+        const val EXTRA_ID = "extra_id"
+    }
     private lateinit var binding: ActivitySuperheroListBinding
     private lateinit var retrofit: Retrofit
     private lateinit var adapter: SuperheroAdapter
@@ -46,7 +50,7 @@ class SuperheroListActivity : AppCompatActivity() {
 
             override fun onQueryTextChange(newText: String?): Boolean = false
         })
-        adapter = SuperheroAdapter()
+        adapter = SuperheroAdapter {superheroId -> navigateToDetail(superheroId)}
         binding.rvSuperhero.setHasFixedSize(true)
         binding.rvSuperhero.layoutManager = LinearLayoutManager(this)
         binding.rvSuperhero.adapter = adapter
@@ -64,6 +68,9 @@ class SuperheroListActivity : AppCompatActivity() {
                     Log.i("Cuerpo de la consulta", response.toString())
                     runOnUiThread {
                         binding.progressBar.isVisible = false
+                        if (response.response != "error"){
+                            adapter.updateList(response.superheroes)
+                        }
                     }
                 }
             }else{
@@ -72,6 +79,11 @@ class SuperheroListActivity : AppCompatActivity() {
         }
     }
 
+    private fun navigateToDetail(id: String){
+        val intent = Intent(this, DetailSuperheroActivity::class.java)
+        intent.putExtra(EXTRA_ID, id)
+        startActivity(intent)
+    }
     private fun getRetrofit(): Retrofit {
         return Retrofit
             .Builder()
