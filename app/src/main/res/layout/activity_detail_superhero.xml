@@ -107,7 +107,7 @@
                     android:layout_weight="1"/>
 
                 <View
-                    android:id="@+id/viewCombar"
+                    android:id="@+id/viewStatcombat"
                     android:layout_width="0dp"
                     android:layout_height="20dp"
                     android:background="@color/superhero_stat_combat"

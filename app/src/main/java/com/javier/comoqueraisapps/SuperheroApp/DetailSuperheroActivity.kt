@@ -1,6 +1,8 @@
 package com.javier.comoqueraisapps.SuperheroApp
 
 import android.os.Bundle
+import android.util.TypedValue
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -14,6 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import kotlin.math.roundToInt
 
 class DetailSuperheroActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailSuperheroBinding
@@ -42,7 +45,36 @@ class DetailSuperheroActivity : AppCompatActivity() {
 
     private fun createUI(superhero: SuperheroDetailResponse) {
         binding.ivSuperhero.load(superhero.image.url)
+        binding.tvSuperheroName.text = superhero.name
+        binding.tvSuperheroRealName.text = superhero.biography.fullName
+        binding.tvPublisher.text = superhero.biography.publisher
+        prepareStats(superhero.powerstats)
     }
+
+    private fun prepareStats(powerstats: SuperheroPowerStatsResponse) {
+        updateHeight(binding.viewIntelligence, powerstats.intelligence)
+        updateHeight(binding.viewStatstrength, powerstats.strength)
+        updateHeight(binding.viewStatspeed, powerstats.speed)
+        updateHeight(binding.viewStatdurability, powerstats.durability)
+        updateHeight(binding.viewStatpower, powerstats.power)
+        updateHeight(binding.viewStatcombat, powerstats.combat)
+    }
+
+    private fun updateHeight(view: View, stat: String) {
+        val params = view.layoutParams
+
+        if (stat != "null") {
+            params.height = pxToDp(stat.toFloat())
+        }else{
+            params.height = 0
+        }
+        view.layoutParams = params
+    }
+
+    private fun pxToDp(px:Float):Int{
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, px, resources.displayMetrics).roundToInt()
+    }
+
 
     private fun getRetrofit(): Retrofit {
         return Retrofit
